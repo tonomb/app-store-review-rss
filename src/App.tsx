@@ -22,7 +22,7 @@ function App() {
   const [appStoreReviews, setAppStoreReviews] = useState(initialReviewState);
 
   useEffect(() => {
-    Axios.get(BASE_URL)
+    Axios.get(`${BASE_URL}/rss`)
       .then(res => {
         console.log(res);
       })

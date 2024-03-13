@@ -1,13 +1,19 @@
 export async function fetchRssReviews(feedUrl: string) {
   try {
-    const feed = await fetch(feedUrl);
+    const response = await fetch(feedUrl);
+    const feed = await response.json();
 
-    if (feed.status === 200) {
-      return feed.json();
+    if (response.status === 200) {
+      return cleanRssReviews(feed);
     } else {
-      console.log(feed.statusText);
+      console.log(response.statusText);
     }
   } catch (error) {
     console.log(error);
   }
+}
+
+function cleanRssReviews(rssFeed: any) {
+  const rssReviews = rssFeed.feed.entry;
+  return rssReviews;
 }
