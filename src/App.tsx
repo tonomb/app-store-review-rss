@@ -1,32 +1,19 @@
-import React, { useEffect, useState } from 'react';
-import Axios from 'axios';
+import React from 'react';
 
-import { BASE_URL } from './constants/constants';
 import ReviewsPage from './components/ReviewsPage';
+
+// State Management
+import { Provider as ReduxProvider } from 'react-redux';
+import { store } from './store';
 
 import './App.css';
 
-const initialReviewState: any = [];
-
-// Review Content,author, score, time
-
 function App() {
-  const [appStoreReviews, setAppStoreReviews] = useState(initialReviewState);
-
-  useEffect(() => {
-    Axios.get(`${BASE_URL}/rss`)
-      .then(res => {
-        console.log(res.data);
-        setAppStoreReviews(res.data);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  }, []);
-
   return (
     <>
-      <ReviewsPage appStoreReviews={appStoreReviews} />
+      <ReduxProvider store={store}>
+        <ReviewsPage />
+      </ReduxProvider>
     </>
   );
 }

@@ -1,15 +1,19 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '../store/';
 import ReviewCard from './ReviewCard';
 import EmptyReviews from './EmptyReviews';
 
-export default function ReviewGrid({ appStoreReviews }: any) {
+export default function ReviewGrid() {
+  const appStoreReviews = useSelector(
+    (state: RootState) => state.reviews.reviews,
+  );
+
   return (
     <div className="grid grid-cols-4 gap-4">
-      {appStoreReviews.length > 0 &&
-        appStoreReviews.map((review: any) => {
-          return <ReviewCard review={review} />;
-        })}
-      {appStoreReviews.length === 0 && <EmptyReviews />}
+      {appStoreReviews.map((review: any) => {
+        return <ReviewCard review={review} key={review.id.label} />;
+      })}
     </div>
   );
 }
