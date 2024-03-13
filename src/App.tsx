@@ -1,25 +1,45 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useEffect, useState } from 'react';
+import Axios from 'axios';
+
+import { BASE_URL } from './constants/constants';
+
 import './App.css';
 
+type AppStoreReview = {
+  title: string;
+};
+
+const initialReviewState = [
+  {
+    title: 'first Review',
+  },
+  {
+    title: 'second review',
+  },
+];
+
 function App() {
+  const [appStoreReviews, setAppStoreReviews] = useState(initialReviewState);
+
+  useEffect(() => {
+    Axios.get(BASE_URL)
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <h1 className="text-3xl font-bold ">Diseney App Store Reviews!</h1>
+      <div>
+        {appStoreReviews.map((review: AppStoreReview) => {
+          return <p>{review.title}</p>;
+        })}
+      </div>
+    </>
   );
 }
 
