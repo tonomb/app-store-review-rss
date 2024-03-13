@@ -3,7 +3,6 @@ import ReviewCard from './ReviewCard';
 import EmptyReviews from './EmptyReviews';
 
 export default function ReviewGrid({ appStoreReviews }: any) {
-  console.log('Review Length', appStoreReviews.length);
   return (
     <div className="grid grid-cols-4 gap-4">
       {appStoreReviews.length > 0 &&
