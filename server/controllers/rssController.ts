@@ -9,7 +9,7 @@ export async function fetchRssFeed(req: Request, res: Response) {
     if (reviews) {
       res.status(200).json(reviews);
     } else {
-      res.status(500).json({ error: 'something went wrong' });
+      res.status(500).json({ error: 'Please check the app id and try again' });
     }
   } catch (error) {
     res

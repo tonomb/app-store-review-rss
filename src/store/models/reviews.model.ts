@@ -25,17 +25,30 @@ interface Review {
 
 interface ReviewsState {
   reviews: Review[];
+  error: boolean;
+  errorMessage?: string;
 }
 
 export const reviews = createModel<RootModel>()({
   state: {
     reviews: [] as Review[],
+    error: false,
+    errorMessage: '',
   },
   reducers: {
     storeReviewsState(state: ReviewsState, payload: Review[]) {
       return {
         ...state,
         reviews: payload,
+        error: false,
+        errorMessage: '',
+      };
+    },
+    storeReviewsError(state: ReviewsState, payload) {
+      return {
+        ...state,
+        error: true,
+        errorMessage: payload,
       };
     },
   },
@@ -47,7 +60,11 @@ export const reviews = createModel<RootModel>()({
           dispatch.reviews.storeReviewsState(res.data);
         })
         .catch(err => {
-          console.log(err);
+          const errorMessage =
+            err.response?.data?.error ||
+            'An error ocurred while fetching the data';
+
+          dispatch.reviews.storeReviewsError(errorMessage);
         });
     },
   }),

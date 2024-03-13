@@ -6,9 +6,11 @@ export default function ReviewInput() {
   const [appId, setAppId] = useState('595068606');
   const dispatch = useDispatch();
 
-  const appStoreReviews = useSelector(
-    (state: RootState) => state.reviews.reviews,
-  );
+  const reviewsStore = useSelector((state: RootState) => state.reviews);
+
+  const appStoreReviews = reviewsStore.reviews;
+  const reviewsError = reviewsStore.error;
+  const reviewsErrorMessage = reviewsStore.errorMessage;
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -33,10 +35,14 @@ export default function ReviewInput() {
         </button>
       </form>
 
-      {appStoreReviews.length === 0 && (
+      {appStoreReviews.length === 0 && !reviewsError && (
         <p className="text-center text-s">
           Enter a app store id to get the latest reviews
         </p>
+      )}
+
+      {reviewsError && (
+        <p className="text-center text-s text-red-500">{reviewsErrorMessage}</p>
       )}
     </>
   );
