@@ -2,10 +2,10 @@ import { Request, Response } from 'express';
 import { fetchRssReviews } from '../services/rssService';
 
 export async function fetchRssFeed(req: Request, res: Response) {
+  const rssReviewsUrl =
+    'https://itunes.apple.com/us/rss/customerreviews/id=595068606/sortBy=mostRecent/page=1/json';
   try {
-    let reviews = await fetchRssReviews(
-      'https://itunes.apple.com/us/rss/customerreviews/id=1446075923/sortBy=mostRecent/page=1/json',
-    );
+    let reviews = await fetchRssReviews(rssReviewsUrl);
 
     if (reviews) {
       res.status(200).json(reviews);

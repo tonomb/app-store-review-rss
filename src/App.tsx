@@ -2,21 +2,13 @@ import React, { useEffect, useState } from 'react';
 import Axios from 'axios';
 
 import { BASE_URL } from './constants/constants';
+import ReviewsPage from './components/ReviewsPage';
 
 import './App.css';
 
-type AppStoreReview = {
-  title: string;
-};
+const initialReviewState: any = [];
 
-const initialReviewState = [
-  {
-    title: 'first Review',
-  },
-  {
-    title: 'second review',
-  },
-];
+// Review Content,author, score, time
 
 function App() {
   const [appStoreReviews, setAppStoreReviews] = useState(initialReviewState);
@@ -24,7 +16,8 @@ function App() {
   useEffect(() => {
     Axios.get(`${BASE_URL}/rss`)
       .then(res => {
-        console.log(res);
+        console.log(res.data);
+        setAppStoreReviews(res.data);
       })
       .catch(err => {
         console.log(err);
@@ -33,12 +26,7 @@ function App() {
 
   return (
     <>
-      <h1 className="text-3xl font-bold ">Diseney App Store Reviews!</h1>
-      <div>
-        {appStoreReviews.map((review: AppStoreReview) => {
-          return <p>{review.title}</p>;
-        })}
-      </div>
+      <ReviewsPage appStoreReviews={appStoreReviews} />
     </>
   );
 }
