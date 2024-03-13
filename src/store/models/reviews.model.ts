@@ -42,7 +42,7 @@ export const reviews = createModel<RootModel>()({
   effects: dispatch => ({
     getReviews(payload) {
       axios
-        .get(`${BASE_URL}/rss`)
+        .get(`${BASE_URL}/rss/${payload}`)
         .then(res => {
           dispatch.reviews.storeReviewsState(res.data);
         })

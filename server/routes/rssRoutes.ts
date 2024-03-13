@@ -3,6 +3,6 @@ import { fetchRssFeed } from '../controllers/rssController';
 
 const router = express.Router();
 
-router.get('/', fetchRssFeed);
+router.get('/:appId', fetchRssFeed);
 
 export const rssRouter = router;
