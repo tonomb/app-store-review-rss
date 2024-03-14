@@ -22,7 +22,7 @@ describe('testing readData', () => {
     expect(fs.promises.readFile).toHaveBeenCalledWith(`${appId}.json`, 'utf-8');
   });
 
-  it('return empty when not found', async () => {
+  it('return false when not found', async () => {
     const appId = '123';
     fs.promises.readFile = jest
       .fn()
@@ -30,7 +30,7 @@ describe('testing readData', () => {
 
     const data = await readData(appId);
 
-    expect(data).toEqual([]);
+    expect(data).toEqual(false);
   });
 });
 
