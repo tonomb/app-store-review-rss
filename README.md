@@ -1,46 +1,47 @@
-# Getting Started with Create React App
+# runway.team Technical Hire Take Home Assignment (Fullstack)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+For this assignment, you’ll be creating:
+A backend service/app that polls an iOS app’s App Store Connect RSS feed to fetch and store App Store reviews for a specific iOS app
+A React app that calls an endpoint on the backend app to fetch and display new reviews from the last 48 hours
 
-## Available Scripts
+Your service should store data about the reviews it fetches for an app (something as simple as writing to an external file is perfectly fine). The app should be able to be stopped/restarted without losing its progress and state.
 
-In the project directory, you can run:
+Reviews fetched and displayed should be ordered by newest first, and for each review the output should include the review content, author, score, and time the review was submitted.
 
-### `yarn start`
+You should be able to do all of this using the standard libraries of the language you’re building in. If you do use 3rd party libraries, just be able to justify their usage.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Think about how to support any number of apps, and how this would affect your design.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Some extra notes:
 
-### `yarn test`
+The assignment should take 2 - 3 hours to complete
+Given our Golang backend it’s great if you want to work in Go, but if you’re more comfortable working in a different language for now, that’s totally fine! Just let us know.
+Example RSS URL: https://itunes.apple.com/us/rss/customerreviews/id=595068606/sortBy=mostRecent/page=1/json
+Feel free to change the appId in that RSS url to any app of your choosing. You can find the appId for any iOS app on the App Store by going to their App Store Preview and grabbing the “id” in the url: https://apps.apple.com/us/app/snapchat/id447188370
+If you’re having issues getting recent reviews for apps from the RSS feed, feel free to increase the 48 hour time window
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Project
 
-### `yarn build`
+- [x]App stores review data
+- [x] App can be stopped and restarted without losing any data
+- [x] React app displays new reviews from the last 48 hours ( Displays all the data, few apps have 48 hours review, if more time would work on how to make this better)
+- [x] React app reviews display required review data (review content, author, score, time submitted)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Running App
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The exercise requires [Node.js](https://nodejs.org/en/) to be installed. We recommend using the LTS version.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. In the repo root directory, run `yarn install` to gather all dependencies.
 
-### `yarn eject`
+1. Then run `yarn start` which should start the React client at port 3000.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+1. Then run `yarn run server` to start the server on port 4000
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Technical Notes
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- The server is running with [nodemon](https://nodemon.io/) which will automatically restart for you when you modify and save a file.
+- The frontend was bootstrapped with [Create React App](https://facebook.github.io/create-react-app/docs/getting-started)
+- Using [axios](https://github.com/axios/axios) as the API client on the frontend
+- The server is running on port 4000.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Thank you runway! 🙏
