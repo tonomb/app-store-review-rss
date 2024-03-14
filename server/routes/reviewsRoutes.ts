@@ -1,8 +1,8 @@
 import express from 'express';
-import { fetchRssFeed } from '../controllers/rssController';
+import { fetchRssFeed } from '../controllers/reviewsController';
 
 const router = express.Router();
 
 router.get('/:appId', fetchRssFeed);
 
-export const rssRouter = router;
+export const reviewsRouter = router;
