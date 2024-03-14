@@ -22,7 +22,7 @@ If you’re having issues getting recent reviews for apps from the RSS feed, fee
 
 ## Project
 
-- [x]App stores review data
+- [x] App stores review data
 - [x] App can be stopped and restarted without losing any data
 - [x] React app displays new reviews from the last 48 hours ( Displays all the data, few apps have 48 hours review, if more time would work on how to make this better)
 - [x] React app reviews display required review data (review content, author, score, time submitted)
