@@ -1,4 +1,4 @@
-import { readData, writeData } from '../database';
+import { readData, writeData } from '../database/utils';
 
 export async function fetchRssReviewsAndSave(appid: string, feedUrl: string) {
   try {

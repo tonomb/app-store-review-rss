@@ -35,7 +35,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "server": "nodemon ./server/server.ts",
-    "test:server": "jest"
+    "test:server": "jest --watchAll"
   },
   "eslintConfig": {
     "extends": [
@@ -63,6 +63,7 @@
     "@types/supertest": "^6.0.2",
     "cross-env": "^7.0.3",
     "jest": "^29.7.0",
+    "jest-fetch-mock": "^3.0.3",
     "nodemon": "^3.1.0",
     "supertest": "^6.3.4",
     "tailwindcss": "^3.4.1",
