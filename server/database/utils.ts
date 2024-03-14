@@ -8,7 +8,7 @@ export async function readData(appid: string) {
     return JSON.parse(data);
   } catch (err) {
     console.log('Error Reading file', err);
-    return [];
+    return false;
   }
 }
 

@@ -9,7 +9,7 @@ export async function fetchRssReviewsAndSave(appid: string, feedUrl: string) {
       //save data
       const rssReviews = await cleanRssReviews(feed);
       await writeData(appid, rssReviews);
-      return cleanRssReviews(feed);
+      return await getLatestReviews(appid);
     } else {
       console.log(response.statusText);
     }
@@ -19,12 +19,16 @@ export async function fetchRssReviewsAndSave(appid: string, feedUrl: string) {
 }
 
 export async function getLatestReviews(appId: string) {
-  const reviews = await readData(appId);
+  try {
+    const reviews = await readData(appId);
+    return reviews;
+  } catch (err) {
+    console.log('No Database for that id');
+  }
 
   // TODO: Check 48 hour time windo, its not big enough
   // const latestReviews = filterLast48Hours(reviews);
   // return latestReviews;
-  return reviews;
 }
 
 async function cleanRssReviews(rssFeed: any) {
