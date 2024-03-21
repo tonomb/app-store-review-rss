@@ -6,10 +6,10 @@ import {
 
 export async function fetchRssFeed(req: Request, res: Response) {
   const appId = req.params.appId;
-  const rssReviewsUrl = `https://itunes.apple.com/us/rss/customerreviews/id=${appId}/sortBy=mostRecent/page=1/json`;
+
   try {
     // Get Reviews from RSS Feed and save them in database
-    let reviews = await fetchRssReviewsAndSave(appId, rssReviewsUrl);
+    let reviews = await fetchRssReviewsAndSave(appId);
 
     // Returns Reviews
     if (reviews) {

@@ -17,7 +17,6 @@ export async function writeData(appid: string, data: any[]) {
   try {
     const jsonData = JSON.stringify(data, null, 2);
     await fs.promises.writeFile(filePath, jsonData, 'utf-8');
-    console.log('saved data');
   } catch (err) {
     console.log('Error Writing to file', err);
   }
